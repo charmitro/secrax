@@ -1,0 +1,8 @@
+#+TITLE: Secrax
+#+AUTHOR: Charalampos Mitrodimas <charmitro@gmail.com>
+
+An Emacs utility Package where you can store secrets in various forms, such
+as,
+  * login credentials
+  * secrets(encrypted/decrypted)
+  * plain text information
