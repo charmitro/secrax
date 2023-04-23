@@ -15,7 +15,9 @@
 ;;;   * plain text information
 ;;;
 ;;; TODO:
-;;;   * Implement `secrax-add-secret'.
+;;;   * [PARTIALLY DONE] Implement `secrax-add-secret'.
+;;;     Should `value' be a list with it's size based on a input(N),
+;;;     iterate N times and append all list items under the entry-title?"
 ;;;   * Implement `secrax-paste-secret'.
 ;;;   * Add modes/types of encyption to be saved with.
 
@@ -36,9 +38,15 @@
   (setq secrax-file (read-file-name "Enter file name:"))
   (message "Set %s for secrax default location." secrax-file))
 
-(defun secrax-add-secret ()
-  "Add a secret to `secrax-file'."
-  (interactive))
+(defun secrax-add-secret (entry-title value)
+  "Add a secret to `secrax-file' ENTRY-TITLE VALUE."
+
+  (interactive
+   (list
+    (read-string "Enter entry title: ")
+    (read-string "Enter entry value: ")))
+  (append-to-file (format "[%s]\n%s\n" entry-title value) nil secrax-file)
+  (message "Added entry %s with value %s" entry-title value))
 
 (defun secrax-paste-secret ()
   "Get a secret saved in `secrax-file' and paste it cursor position."
